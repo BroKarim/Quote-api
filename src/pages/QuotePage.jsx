@@ -23,6 +23,10 @@ export default function QuotePage() {
     }
   };
 
+  useEffect(() => {
+    getQuote('https://api.quotable.io/random');
+  }, []);
+
   const handleNextQuoteClick = () => {
     getQuote('https://api.quotable.io/random');
   };
@@ -33,11 +37,6 @@ export default function QuotePage() {
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`, 'Tweet Window', 'width=600, height=300');
   };
 
-  
-  useEffect(() => {
-    
-    getQuote('https://api.quotable.io/random');
-  }, []);
   return (
     <>
       <section className="relative mx-auto">
@@ -46,7 +45,7 @@ export default function QuotePage() {
             <a className="text-3xl font-bold font-heading" href="#">
               Quote.
             </a>
-
+            {/* Author */}
             <span className="block mt-[10px] float-right relative" id="author">
               {quoteData.author}
             </span>
@@ -78,15 +77,17 @@ export default function QuotePage() {
             </g>
             <path d="M30.5,8" />
           </svg>
+          {/* Quote */}
           <blockquote className="text-5xl text-center min-h-[110px] px-20" id="quote">
-          {quoteData.quote}
+            {quoteData.quote}
           </blockquote>
-          
+
+          {/* Twitter button */}
           <button
             onClick={tweet}
             className="inline-flex items-center justify-center gap-2 h-16 px-6 py-0 text-xl font-semibold text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-2 border-gray-600 border-solid rounded-full cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
           >
-            Button Text
+            Tweet
             <svg width="30px" height="30px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
               <path
                 fill="#1DA1F2"
